@@ -7,22 +7,24 @@
     // 允许使用async
     "generator-star-spacing": "off",
     "babel/generator-star-spacing": "off",
-    "linebreak-style": ["error", "windows"],
-    // 三等号
-    "eqeqeq": 0,
-    // 强制在注释中 // 或 /* 使用一致的空格
-    "spaced-comment": 0,
-    // 关键字后面使用一致的空格
-    "keyword-spacing": 0,
-    // 强制在 function的左括号之前使用一致的空格
+    "arrow-parens": 0,
+    "eol-last": 0,
     "space-before-function-paren": 0,
-    // 引号类型
-    "quotes": [1, "single"],
-    // 禁止出现未使用过的变量
-    "no-unused-vars": 1,
-    // 要求或禁止末尾逗号
-    "comma-dangle": 1,
-    // js语句结尾必须使用分号
-    "semi": [2, "never"]
+    "comma-dangle": 0,
+    "no-return-assign": 0,
+    "camelcase": 0,
+    "no-useless-computed-key": 0,
+    "quotes": [1, "single"], //引号类型 `` "" ''
+    "semi": [1, "never"],
+    "no-unused-vars": 0,
+    "no-unexpected-multiline": 0,
+    "no-unused-expressions": 0,
+    "no-sequences": 0,
+    "func-call-spacing": 0,
+    "eqeqeq": 0,
+    "brace-style": 0,
+    "no-irregular-whitespace": 0,
+    "no-undef": 0,
+    "prefer-promise-reject-errors": 0
   }
 }
