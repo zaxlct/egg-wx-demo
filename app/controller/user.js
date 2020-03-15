@@ -15,7 +15,7 @@ class UserController extends Controller {
    * @description 创建用户，记录用户账户/密码/类型
    * @router post /api/v1/user
    * @request body createUserRequest *body
-   * @response 200 baseResponse 创建成功
+   * @response 200 queryUserResponse 创建成功
    */
   async create() {
     const ctx = this.ctx
