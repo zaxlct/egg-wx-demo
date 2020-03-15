@@ -19,12 +19,15 @@ class UserController extends Controller {
    */
   async create() {
     const ctx = this.ctx
-    // const v = await new PositiveIntegerValidator().validate(ctx)
-    // const user = await ctx.service.user.create(v)
-    // ctx.body = {
-    //   id: user.id,
-    // }
-    throw new ctx.app.errs.Success()
+    const v = await new ctx.app.validator.RegisterValidator().validate(ctx)
+    const user = await ctx.service.user.create({
+      email: v.get('body.email'),
+      password: v.get('body.password1'),
+      nickname: v.get('body.nickname'),
+    })
+    ctx.body = {
+      id: user.id,
+    }
   }
 }
 module.exports = UserController
