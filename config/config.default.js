@@ -41,15 +41,33 @@ module.exports = appInfo => {
 
   // add your user config here
   const userConfig = {
-    // myAppName: 'egg',
+    myAppName: '旧岛小样',
+    description: '旧岛小样微信小程序 API 文档',
+  }
+
+  config.validator = {
+    open: async ctx => 'zh-CN',
+    // or
+    // open: 'zh-CN',  它表示开启的语言
+    languages: {
+      'zh-CN': {
+        required: '%s 必填'
+      }
+    },
+    async formatter(ctx, error) {
+      ctx.type = 'json'
+      ctx.status = 400
+      ctx.body = error
+    }
   }
 
   config.swaggerdoc = {
     dirScanner: './app/controller', // 配置自动扫描的控制器路径
+    // basePath: '',
     // 接口文档的标题，描述或其它
     apiInfo: {
-      title: 'Render', // 接口文档的标题
-      description: 'swagger-ui for Render document.', // 接口文档描述
+      title: userConfig.myAppName, // 接口文档的标题
+      description: userConfig.description, // 接口文档描述
       version: '1.0.0', // 接口文档版本
     },
     schemes: ['http', 'https'], // 配置支持的协议

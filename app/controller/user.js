@@ -19,7 +19,8 @@ class UserController extends Controller {
    */
   async create() {
     const ctx = this.ctx
-    const user = await ctx.service.user.create(ctx.request.body)
+    const params = await this.ctx.verify('user', 'body')
+    const user = await ctx.service.user.create(params)
     ctx.body = {
       id: user.id,
     }
