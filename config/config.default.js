@@ -20,7 +20,11 @@ module.exports = appInfo => {
       password: '123456',
       define: {
         freezeTableName: true, // 阻止数据表名变为复数
-        timestamps: false // 阻止model生成createAt和updateAt字段
+        underscored: true,
+        createdAt: 'created_at',
+        updatedAt: 'updated_at',
+        deletedAt: 'deleted_at'
+        // timestamps: false // 阻止model生成createAt和updateAt字段
       }
     },
   }
