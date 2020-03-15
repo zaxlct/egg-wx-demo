@@ -17,8 +17,11 @@ module.exports = appInfo => {
       port: 3306,
       database: 'island-egg',
       user: 'root',
-      // dbName: 'island-egg',
       password: '123456',
+      define: {
+        freezeTableName: true, // 阻止数据表名变为复数
+        timestamps: false // 阻止model生成createAt和updateAt字段
+      }
     },
   }
 
