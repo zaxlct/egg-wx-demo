@@ -31,7 +31,6 @@ module.exports = () => {
           request: `${ctx.method} ${ctx.path}`
         }
       }
-      console.log(ctx.body)
       ctx.status = status
     }
   }
