@@ -48,22 +48,6 @@ module.exports = appInfo => {
     description: '旧岛小样微信小程序 API 文档',
   }
 
-  config.validator = {
-    open: async ctx => 'zh-CN',
-    // or
-    // open: 'zh-CN',  它表示开启的语言
-    languages: {
-      'zh-CN': {
-        required: '%s 必填'
-      }
-    },
-    async formatter(ctx, error) {
-      ctx.type = 'json'
-      ctx.status = 400
-      ctx.body = error
-    }
-  }
-
   config.swaggerdoc = {
     dirScanner: './app/controller', // 配置自动扫描的控制器路径
     // basePath: '',

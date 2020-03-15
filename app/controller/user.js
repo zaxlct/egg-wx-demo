@@ -34,9 +34,8 @@ class UserController extends Controller {
    */
   async create() {
     const ctx = this.ctx
-    const test = await new PositiveIntegerValidator().validate(ctx)
-    const params = await this.ctx.verify('user', 'body')
-    const user = await ctx.service.user.create(params)
+    const v = await new PositiveIntegerValidator().validate(ctx)
+    const user = await ctx.service.user.create(v)
     ctx.body = {
       id: user.id,
     }
