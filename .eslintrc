@@ -17,6 +17,7 @@
     "quotes": [1, "single"], //引号类型 `` "" ''
     "semi": [1, "never"],
     "no-unused-vars": 0,
+    "array-bracket-spacing": 0,
     "no-unexpected-multiline": 0,
     "no-unused-expressions": 0,
     "no-sequences": 0,
