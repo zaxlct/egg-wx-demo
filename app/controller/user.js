@@ -1,21 +1,6 @@
 'use strict'
 
 const Controller = require('egg').Controller
-const {
-  LinValidator,
-  Rule
-} = require('lin-mizar')
-
-class PositiveIntegerValidator extends LinValidator {
-  constructor() {
-    super()
-    this.id = [
-      new Rule('isInt', '需要是正整数', {
-        min: 1
-      }),
-    ]
-  }
-}
 
 /**
  * @controller user 用户接口
@@ -34,12 +19,12 @@ class UserController extends Controller {
    */
   async create() {
     const ctx = this.ctx
-    const v = await new PositiveIntegerValidator().validate(ctx)
-    const user = await ctx.service.user.create(v)
-    ctx.body = {
-      id: user.id,
-    }
-    ctx.status = 201
+    // const v = await new PositiveIntegerValidator().validate(ctx)
+    // const user = await ctx.service.user.create(v)
+    // ctx.body = {
+    //   id: user.id,
+    // }
+    throw new ctx.app.errs.Success()
   }
 }
 module.exports = UserController
