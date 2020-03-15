@@ -7,11 +7,11 @@ const {
 
 const {
   User
-} = require('../models/user')
+} = require('../model/user')
 const {
   LoginType,
   ArtType
-} = require('../lib/enum')
+} = require('../utils/enum')
 
 class PositiveIntegerValidator extends LinValidator {
   constructor() {
@@ -41,6 +41,7 @@ class RegisterValidator extends LinValidator {
     ]
     this.password2 = this.password1
     this.nickname = [
+      new Rule('isNotEmpty', '昵称不可为空'),
       new Rule('isLength', '昵称不符合长度规范', {
         min: 4,
         max: 32
@@ -52,22 +53,22 @@ class RegisterValidator extends LinValidator {
     const psw1 = vals.body.password1
     const psw2 = vals.body.password2
     if (psw1 !== psw2) {
-      throw new Error('两个密码必须相同')
+      return [false, '两个密码必须相同']
     }
+    return true
   }
 
-  async validateEmail(vals) {
-    const email = vals.body.email
-    const user = await User.findOne({
-      where: {
-        email
-      }
-    })
-    if (user) {
-      throw new Error('email已存在')
-    }
-  }
-
+  // async validateEmail(vals) {
+  //   const email = vals.body.email
+  //   const user = await User.findOne({
+  //     where: {
+  //       email
+  //     }
+  //   })
+  //   if (user) {
+  //     throw new Error('email已存在')
+  //   }
+  // }
 }
 
 class TokenValidator extends LinValidator {
