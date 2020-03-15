@@ -15,9 +15,4 @@ module.exports = {
     enable: true, // 启用 swagger-ui 默认启用
     package: 'egg-swagger-doc', // 指定 第三方插件 包名称
   },
-
-  validator: {
-    enable: true,
-    package: 'egg-y-validator'
-  }
 }
