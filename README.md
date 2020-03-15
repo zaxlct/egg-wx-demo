@@ -1,6 +1,6 @@
 # island-egg
+用 Egg 实现的「旧岛小样」微信小程序端 API
 
-用 egg 做旧岛小样
 
 ## QuickStart
 
