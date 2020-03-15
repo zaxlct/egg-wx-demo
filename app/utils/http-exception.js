@@ -12,6 +12,15 @@ class ParameterException extends HttpException {
   }
 }
 
+class EmailExists extends HttpException {
+  constructor(msg, errorCode) {
+    super()
+    this.code = 400
+    this.msg = msg || '该邮箱已存在'
+    this.errorCode = errorCode || 10008
+  }
+}
+
 class Success extends HttpException {
   constructor(msg, errorCode) {
     super()
@@ -68,6 +77,7 @@ class DislikeError extends HttpException {
 
 module.exports = {
   ParameterException,
+  EmailExists,
   Success,
   NotFound,
   AuthFailed,

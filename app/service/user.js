@@ -15,6 +15,14 @@ class UserService extends Service {
     })
     return user
   }
+
+  async findByEmail(email) {
+    return await this.ctx.model.User.findOne({
+      where: {
+        email
+      }
+    })
+  }
 }
 
 module.exports = UserService

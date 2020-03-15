@@ -6,9 +6,6 @@ const {
 } = require('lin-mizar')
 
 const {
-  User
-} = require('../model/user')
-const {
   LoginType,
   ArtType
 } = require('../utils/enum')
@@ -57,18 +54,6 @@ class RegisterValidator extends LinValidator {
     }
     return true
   }
-
-  // async validateEmail(vals) {
-  //   const email = vals.body.email
-  //   const user = await User.findOne({
-  //     where: {
-  //       email
-  //     }
-  //   })
-  //   if (user) {
-  //     throw new Error('email已存在')
-  //   }
-  // }
 }
 
 class TokenValidator extends LinValidator {
