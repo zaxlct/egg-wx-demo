@@ -58,18 +58,19 @@ class RegisterValidator extends LinValidator {
 
 class TokenValidator extends LinValidator {
   constructor() {
-    // 隐藏的错误
-    // Java
-    // JS Python
     super()
-    this.account = [
-      new Rule('isLength', '不符合账号规则', {
-        min: 4,
-        max: 32
+    this.email = [
+      new Rule('isOptional'),
+      new Rule('isEmail', '不符合Email规范')
+    ]
+    this.code = [
+      new Rule('isOptional'),
+      new Rule('isLength', '至少10个字符', {
+        min: 10,
+        max: 128
       })
     ]
     this.secret = [
-      //    validator.js
       new Rule('isOptional'),
       new Rule('isLength', '至少6个字符', {
         min: 6,
@@ -79,12 +80,25 @@ class TokenValidator extends LinValidator {
   }
 
   validateLoginType(vals) {
-    if (!vals.body.type) {
-      throw new Error('type是必须参数')
+    const type = vals.body.type
+    const email = vals.body.email
+    const code = vals.body.code
+    const secret = vals.body.secret
+    if (!type) {
+      return [false, 'type是必须参数']
     }
-    if (!LoginType.isThisType(vals.body.type)) {
-      throw new Error('type参数不合法')
+    if (!LoginType.isThisType(type)) {
+      return [false, 'type参数不合法']
     }
+
+    if (type === LoginType.USER_EMAIL && (!email || !secret)) {
+      return [false, '邮箱或密码字段必传']
+    }
+
+    if (type === LoginType.USER_MINI_PROGRAM && !code) {
+      return [false, '小程序 code 必传']
+    }
+    return true
   }
 }
 
