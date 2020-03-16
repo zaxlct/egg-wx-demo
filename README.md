@@ -10,6 +10,13 @@
 ## 分支说明
 - 基础的开发环境搭建完成
 - JWT 以及 Auth 中间件功能
+  - 邮箱密码获取 token
+  - 小程序 code 获取 token
+- TODO
+
+## TODO
+- 部署
+- 单元测试
 
 ## QuickStart
 
