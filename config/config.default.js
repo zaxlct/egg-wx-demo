@@ -36,6 +36,12 @@ module.exports = appInfo => {
       enable: false
     }
   }
+  config.auth = {
+    security: {
+      secretKey: 'abcdefg',
+      expiresIn: 60 * 60 * 24 * 30
+    }
+  }
   // add your middleware config here
   config.middleware = ['errorHandler']
   config.errorHandler = {
