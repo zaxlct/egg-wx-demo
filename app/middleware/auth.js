@@ -62,6 +62,24 @@ class Auth {
       return false
     }
   }
+
+  /**
+   *
+   * @param {Int} uid 用户 id
+   * @param {Int} scope 当前登录用户的权限
+   * @param {Object} security JWT 配置项
+   */
+  static generateToken(uid, scope, security) {
+    const secretKey = security.secretKey
+    const expiresIn = security.expiresIn
+    const token = jwt.sign({
+      uid,
+      scope
+    }, secretKey, {
+      expiresIn
+    })
+    return token
+  }
 }
 
 module.exports = Auth
