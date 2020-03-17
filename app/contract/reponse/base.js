@@ -7,7 +7,10 @@ module.exports = {
       required: true
     },
     errorMessage: {
-      type: 'string'
+      msg: 'string',
+      erorr_code: 'boolean',
+      request: 'string',
+      type: 'object',
     },
   },
 }

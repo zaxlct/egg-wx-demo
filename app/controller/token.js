@@ -3,7 +3,7 @@
 const Controller = require('egg').Controller
 
 /**
- * @controller Token
+ * @controller Token 相关接口
  */
 class TokenController extends Controller {
   /**
