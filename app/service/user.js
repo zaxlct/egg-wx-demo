@@ -8,12 +8,11 @@ class UserService extends Service {
     email,
     password
   }) {
-    const user = await this.ctx.model.User.create({
+    return await this.ctx.model.User.create({
       nickname,
       email,
       password
     })
-    return user
   }
 
   async findByEmail(email) {
@@ -21,6 +20,20 @@ class UserService extends Service {
       where: {
         email
       }
+    })
+  }
+
+  async getUserByOpenid(openid) {
+    return await this.ctx.model.User.findOne({
+      where: {
+        openid
+      }
+    })
+  }
+
+  async registerByOpenid(openid) {
+    return await this.ctx.model.User.create({
+      openid,
     })
   }
 }

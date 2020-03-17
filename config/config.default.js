@@ -36,6 +36,23 @@ module.exports = appInfo => {
       enable: false
     }
   }
+  config.auth = {
+    security: {
+      secretKey: 'abcdefg',
+      expiresIn: 60 * 60 * 24 * 30
+    }
+  }
+  config.wx = {
+    appId: '', // 小程序 appId
+    appSecret: '', // 小程序 appSecret，在微信小程序后台获取
+    loginUrl: 'https://api.weixin.qq.com/sns/jscode2session?appid=%s&secret=%s&js_code=%s&grant_type=authorization_code'
+  }
+
+  config.yushu = {
+    detailUrl: 'http://t.yushu.im/v2/book/id/%s',
+    keywordUrl: 'http://t.yushu.im/v2/book/search?q=%s&count=%s&start=%s&summary=%s'
+  }
+
   // add your middleware config here
   config.middleware = ['errorHandler']
   config.errorHandler = {
