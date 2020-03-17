@@ -48,6 +48,13 @@ class TokenController extends Controller {
     }
   }
 
+  /**
+   * @summary 验证 token 是否可用
+   * @description
+   * @router post /api/v1/token/verify
+   * @response 200 verifyTokenResponse 创建成功
+   * @apikey
+   */
   async verify() {
     const ctx = this.ctx
     const app = this.app
