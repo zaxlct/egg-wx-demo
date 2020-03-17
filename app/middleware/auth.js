@@ -34,6 +34,7 @@ class Auth {
             throw new errs.Forbbiden('权限不足')
           }
           ctx.auth = {
+            token,
             uid: decode.uid,
             scope: decode.scope
           }

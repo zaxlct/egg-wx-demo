@@ -49,7 +49,13 @@ class TokenController extends Controller {
   }
 
   async verify() {
-
+    const ctx = this.ctx
+    const app = this.app
+    const token = ctx.auth.token
+    const is_valid = app.middleware.auth.verifyToken(token, app.config.auth.security.secretKey)
+    ctx.body = {
+      is_valid
+    }
   }
 }
 module.exports = TokenController
