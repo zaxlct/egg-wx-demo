@@ -1,48 +1,52 @@
 'use strict'
 
+const enums = require('../utils/enum')
+const enumsType = {}
+Object.keys(enums).forEach(key => {
+  enumsType[key] = {
+    type: 'string',
+    description: enums[key].getDoc(),
+    enum: enums[key].getEnum(),
+  }
+})
 module.exports = {
-  user: {
+  classic: {
     id: {
-      type: 'string',
-      description: 'id 唯一键'
-    },
-    userName: {
-      type: 'string',
-      description: '用户姓名'
-    },
-    sexy: {
-      type: 'string',
-      description: '用户性别'
-    },
-    age: {
       type: 'integer',
-      description: '年龄'
+      description: '期刊在数据中序号，供点赞使用（实际上是 art_id，不是期刊在数据库中的主键）'
     },
-    group: {
+    content: {
+      type: 'string',
+      description: '期刊内容'
+    },
+    fav_nums: {
       type: 'integer',
-      description: '组别'
+      description: '点赞次数'
     },
-    isLeader: {
+    image: {
+      type: 'string',
+      description: '图片 URL'
+    },
+    index: {
+      type: 'integer',
+      description: '期号'
+    },
+    like_status: {
       type: 'boolean',
-      description: '是否小组负责人'
+      description: '是否点赞'
     },
-    email: {
+    pubdate: {
       type: 'string',
-      description: '邮箱'
+      description: '发布日期'
     },
-    phoneNumber: {
+    title: {
       type: 'string',
-      description: '电话'
+      description: '期刊题目'
     },
+    type: {
+      type: 'integer',
+      description: '期刊类型,这里的类型分为:100 电影 200 音乐 300 句子',
+    }
   },
-  group: {
-    id: {
-      type: 'string',
-      description: 'id 唯一键'
-    },
-    groupName: {
-      type: 'string',
-      description: '组名'
-    },
-  },
+  enumsType,
 }

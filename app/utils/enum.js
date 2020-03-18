@@ -16,7 +16,7 @@ function getEnum() {
 
 // USER_MINI_PROGRAM:100；USER_EMAIL:101；USER_MOBILE:102；ADMIN_EMAIL:200
 function getDoc() {
-  return Object.keys(this)
+  return this.description + '=>' + Object.keys(this)
     .filter(key => typeof this[key] === 'number')
     .map(key => key + ':' + this[key])
     .join('；')
@@ -30,6 +30,7 @@ const LoginType = {
   isThisType,
   getEnum,
   getDoc,
+  description: '登录类型',
 }
 
 const ArtType = {
@@ -40,6 +41,7 @@ const ArtType = {
   isThisType,
   getEnum,
   getDoc,
+  description: '期刊类型',
 }
 
 module.exports = {

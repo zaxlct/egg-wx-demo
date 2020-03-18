@@ -10,8 +10,8 @@ class ClassicController extends Controller {
    * @summary 获取最新一期
    * @description 获取最新一期期刊
    * @router get /api/v1/classic
-   * @request body createUserRequest *body
-   * @response 200 queryUserResponse 创建成功
+   * @response 200 classicResponse 获取最新一期
+   * @apikey
    */
   async latest() {
     const ctx = this.ctx
