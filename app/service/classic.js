@@ -3,7 +3,7 @@
 const Service = require('egg').Service
 
 class ClassicService extends Service {
-  // 查询第一条数据？
+  // 查询第一条数据
   async getClassicLatest() {
     return await this.ctx.model.Flow.findOne({
       order: [['index', 'DESC']]
