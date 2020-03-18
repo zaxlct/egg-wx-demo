@@ -15,6 +15,7 @@ module.exports = app => {
 
   router.get('/api/v1/classic/latest', new app.middlewares.auth().m, 'classic.latest')
   router.get('/api/v1/classic/:index/next', new app.middlewares.auth().m, 'classic.next')
+  router.get('/api/v1/classic/:index/previous', new app.middlewares.auth().m, 'classic.previous')
 
   // router.resources('user', '/api/v1/user', new app.middlewares.auth().m, app.controller.user)
 }
