@@ -64,6 +64,9 @@ class ClassicService extends Service {
 
   async getClassic(query, uid) {
     const flow = await this.getFlow(query)
+    if (!flow) {
+      throw new this.ctx.app.errs.NotFound()
+    }
     const art = await this.getArtById(flow.art_id, flow.type)
     const like_status = await this.getFavorByArtId(flow.art_id, flow.type, uid)
     return {
