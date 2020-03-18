@@ -51,24 +51,13 @@ class ClassicService extends Service {
     return art
   }
 
-  async getFavorByArtId(art_id, type, uid) {
-    const favor = await this.ctx.model.Favor.findOne({
-      where: {
-        uid,
-        art_id,
-        type,
-      }
-    })
-    return favor
-  }
-
   async getClassic(query, uid) {
     const flow = await this.getFlow(query)
     if (!flow) {
       throw new this.ctx.app.errs.NotFound()
     }
     const art = await this.getArtById(flow.art_id, flow.type)
-    const like_status = await this.getFavorByArtId(flow.art_id, flow.type, uid)
+    const like_status = await this.ctx.service.favor.getFavorByArtId(flow.art_id, flow.type, uid)
     return {
       like_status: !!like_status,
       index: flow.index,
