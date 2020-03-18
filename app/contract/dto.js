@@ -10,6 +10,7 @@ Object.keys(enums).forEach(key => {
   }
 })
 module.exports = {
+  enumsType,
   classic: {
     id: {
       type: 'integer',
@@ -48,5 +49,4 @@ module.exports = {
       description: '期刊类型,这里的类型分为:100 电影 200 音乐 300 句子',
     }
   },
-  enumsType,
 }
