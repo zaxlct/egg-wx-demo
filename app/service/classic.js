@@ -4,10 +4,8 @@ const Service = require('egg').Service
 
 class ClassicService extends Service {
   // 查询第一条数据
-  async getClassicLatest() {
-    return await this.ctx.model.Flow.findOne({
-      order: [['index', 'DESC']]
-    })
+  async getFlow(query) {
+    return await this.ctx.model.Flow.findOne(query)
   }
 
   async getArtById(art_id, type) {
@@ -62,6 +60,24 @@ class ClassicService extends Service {
       }
     })
     return favor
+  }
+
+  async getClassic(query, uid) {
+    const flow = await this.getFlow(query)
+    const art = await this.getArtById(flow.art_id, flow.type)
+    const like_status = await this.getFavorByArtId(flow.art_id, flow.type, uid)
+    return {
+      like_status: !!like_status,
+      index: flow.index,
+      type: flow.type,
+      id: flow.art_id,
+      content: art.content,
+      fav_nums: art.fav_nums,
+      image: art.image,
+      pubdate: art.like_status,
+      title: art.title,
+      url: art.url,
+    }
   }
 }
 
