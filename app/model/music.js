@@ -3,7 +3,7 @@
 module.exports = app => {
   const Sequelize = app.Sequelize
   class Music extends Sequelize.Model {}
-  Sentence.init({
+  Music.init({
     image: {
       type: Sequelize.STRING,
     },
