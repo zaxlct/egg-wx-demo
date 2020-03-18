@@ -12,5 +12,8 @@ module.exports = app => {
 
   router.post('/api/v1/token', 'token.create')
   router.post('/api/v1/token/verify', new app.middlewares.auth().m, 'token.verify')
+
+  router.get('/api/v1/classic', new app.middlewares.auth().m, 'classic.latest')
+
   // router.resources('user', '/api/v1/user', new app.middlewares.auth().m, app.controller.user)
 }
