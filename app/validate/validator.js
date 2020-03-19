@@ -141,6 +141,24 @@ class ClassicValidator extends LikeValidator {
 
 }
 
+class MyFavorValidator extends LinValidator {
+  constructor() {
+    super()
+    this.start = [
+      new Rule('isOptional', '', 1),
+      new Rule('isInt', '需要是正整数', {
+        min: 1
+      }),
+    ]
+    this.count = [
+      new Rule('isOptional', '', 20),
+      new Rule('isInt', '需要是正整数', {
+        min: 1
+      }),
+    ]
+  }
+}
+
 class SearchValidator extends LinValidator {
   constructor() {
     super()
@@ -188,5 +206,6 @@ module.exports = {
   LikeValidator,
   ClassicValidator,
   SearchValidator,
-  AddShortCommentValidator
+  AddShortCommentValidator,
+  MyFavorValidator,
 }
