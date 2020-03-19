@@ -66,8 +66,7 @@ class ClassicService extends Service {
     const like_status = await this.ctx.service.favor.getFavorByArtId(art_id, type, uid)
     //  classsic 里的 id 是 ait_id
     return Object.assign(
-      art.toJSON(),
-      {
+      art.toJSON(), {
         like_status: !!like_status,
         index,
       },
