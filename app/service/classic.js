@@ -87,6 +87,21 @@ class ClassicService extends Service {
     const classic = await this.getClassicByArt(flow.art_id, flow.type, uid, flow.index)
     return classic
   }
+
+  /**
+   *
+   * @param {integer} art_id 正整数，
+   * @param {integer} type 正整数，
+   * @param {integer} uid 正整数，
+   */
+  async getClassicFavor(art_id, type, uid) {
+    const like_status = await this.ctx.service.favor.getFavorByArtId(art_id, type, uid)
+    const fav_nums = await this.ctx.service.favor.getFavorNums(art_id, type)
+    return {
+      like_status: !!like_status,
+      fav_nums,
+    }
+  }
 }
 
 module.exports = ClassicService

@@ -85,5 +85,23 @@ class ClassicController extends Controller {
     const classic = await ctx.service.classic.getClassicByArt(art_id, type, ctx.auth.uid)
     ctx.body = classic
   }
+
+  /**
+   * @summary 获取点赞信息
+   * @description 我是否点过赞，以及总共的点赞数
+   * @router get /api/v1/classic/<type>/<id>/favor
+   * @request path1 integer * type 类型号，最下面 enumsType 里的 ArtType
+   * @request path2 integer * id 点赞对象的id号（ id 实际是是 art_id）
+   * @response 200 classicResponse
+   * @apikey
+   */
+  async favor() {
+    const ctx = this.ctx
+    const v = await new this.app.validator.LikeValidator().validate(ctx)
+    const art_id = v.get('path.id')
+    const type = v.get('path.type')
+    const classic = await ctx.service.classic.getClassicFavor(art_id, type, ctx.auth.uid)
+    ctx.body = classic
+  }
 }
 module.exports = ClassicController
