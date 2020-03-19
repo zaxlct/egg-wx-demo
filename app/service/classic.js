@@ -95,10 +95,11 @@ class ClassicService extends Service {
    */
   async getClassicFavor(art_id, type, uid) {
     const like_status = await this.ctx.service.favor.getFavorByArtId(art_id, type, uid)
-    const fav_nums = await this.ctx.service.favor.getFavorNums(art_id, type)
+    const classsic = await this.ctx.service.classic.getArtById(art_id, type)
+    // 点赞数是记录的字段，也可查询 favor 表里实际的数量
     return {
       like_status: !!like_status,
-      fav_nums,
+      fav_nums: classsic.fav_nums,
     }
   }
 }

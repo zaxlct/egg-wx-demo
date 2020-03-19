@@ -53,12 +53,8 @@ class FavorService extends Service {
   }
 
   async getFavorNums(art_id, type) {
-    return await this.ctx.model.Favor.findOne({
-      where: {
-        art_id,
-        type,
-      }
-    })
+    // TODO 资源的点赞数是记录到资源的 fav_nums 字段里了，每次点赞和取消点赞，都要加减一
+    // 应该也可以直接查询 favor 表的资源数量，这样字段的 fav_nums字段就无效了
   }
 }
 
