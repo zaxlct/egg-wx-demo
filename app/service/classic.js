@@ -64,18 +64,14 @@ class ClassicService extends Service {
   async getClassicByArt(art_id, type, uid, index = null) {
     const art = await this.getArtById(art_id, type)
     const like_status = await this.ctx.service.favor.getFavorByArtId(art_id, type, uid)
-    return {
-      like_status: !!like_status,
-      index,
-      type,
-      id: art_id,
-      content: art.content,
-      fav_nums: art.fav_nums,
-      image: art.image,
-      pubdate: art.like_status,
-      title: art.title,
-      url: art.url,
-    }
+    //  classsic 里的 id 是 ait_id
+    return Object.assign(
+      art.toJSON(),
+      {
+        like_status: !!like_status,
+        index,
+      },
+    )
   }
 
   /**
