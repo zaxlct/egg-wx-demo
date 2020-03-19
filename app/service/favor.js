@@ -15,12 +15,19 @@ class FavorService extends Service {
     } catch (error) {
       throw new ctx.app.errs.LikeError('你点赞的资源不存在')
     }
-    await this.ctx.model.Favor.create({
-      art_id,
-      type,
-      uid,
+    return this.ctx.model.transaction(async t => {
+      await this.ctx.model.Favor.create({
+        art_id,
+        type,
+        uid
+      }, {
+        transaction: t,
+      })
+      await art.increment('fav_nums', {
+        by: 1,
+        transaction: t,
+      })
     })
-    await art.increment('fav_nums')
   }
 
   async deleteFavor(art_id, type, uid) {
@@ -35,10 +42,17 @@ class FavorService extends Service {
     } catch (error) {
       throw new ctx.app.errs.LikeError('你取消点赞资源不存在')
     }
-    await favor.destroy({
-      force: true, // 物理删除 or 软删除
+
+    return this.ctx.model.transaction(async t => {
+      await favor.destroy({
+        force: true, // 物理删除 or 软删除
+        transaction: t,
+      })
+      await art.decrement('fav_nums', {
+        by: 1,
+        transaction: t,
+      })
     })
-    await art.decrement('fav_nums')
   }
 
   async getFavorByArtId(art_id, type, uid) {
