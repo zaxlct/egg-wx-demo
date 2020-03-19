@@ -1,6 +1,9 @@
 'use strict'
 
 const Service = require('egg').Service
+const {
+  Op
+} = require('sequelize')
 
 class ClassicService extends Service {
   // 查询第一条数据
@@ -53,6 +56,58 @@ class ClassicService extends Service {
     }
     return art
   }
+
+  async getArtListByIds(artIds, type) {
+    const {
+      MOVIE,
+      SENTENCE,
+      MUSIC,
+      BOOK,
+    } = this.ctx.app.enums.ArtType
+    let artList = []
+    switch (type) {
+      case MOVIE:
+        artList = await this.ctx.model.Movie.findAll({
+          where: {
+            id: {
+              [Op.in]: artIds
+            },
+          }
+        })
+        break
+      case SENTENCE:
+        artList = await this.ctx.model.Sentence.findAll({
+          where: {
+            id: {
+              [Op.in]: artIds
+            },
+          }
+        })
+        break
+      case MUSIC:
+        artList = await this.ctx.model.Music.findAll({
+          where: {
+            id: {
+              [Op.in]: artIds
+            },
+          }
+        })
+        break
+      case BOOK:
+        artList = await this.ctx.model.Book.findAll({
+          where: {
+            id: {
+              [Op.in]: artIds
+            },
+          }
+        })
+        break
+      default:
+        break
+    }
+    return artList
+  }
+
 
   /**
    *
