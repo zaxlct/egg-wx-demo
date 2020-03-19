@@ -92,7 +92,7 @@ class ClassicController extends Controller {
    * @router get /api/v1/classic/<type>/<id>/favor
    * @request path1 integer * type 类型号，最下面 enumsType 里的 ArtType
    * @request path2 integer * id 点赞对象的id号（ id 实际是是 art_id）
-   * @response 200 classicResponse
+   * @response 200 classicFavorResponse
    * @apikey
    */
   async favor() {
