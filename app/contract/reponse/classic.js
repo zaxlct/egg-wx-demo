@@ -1,6 +1,11 @@
 'use strict'
 
 module.exports = {
+  classicResponse: {
+    result: {
+      type: 'classic',
+    }
+  },
   classicFavorResponse: {
     like_status: {
       type: 'boolean',
