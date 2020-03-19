@@ -6,6 +6,12 @@ module.exports = {
       type: 'classic',
     }
   },
+  classicListResponse: {
+    result: {
+      type: 'array',
+      itemType: 'classic',
+    }
+  },
   classicFavorResponse: {
     like_status: {
       type: 'boolean',

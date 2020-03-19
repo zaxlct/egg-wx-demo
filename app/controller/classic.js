@@ -110,7 +110,7 @@ class ClassicController extends Controller {
    * @router get /api/v1/classic/favor
    * @request query1 start * integer 开始的页数, 默认为1
    * @request query2 count * integer 每页的内容条数, 不超过20, 默认为20
-   * @response 200 classicFavorResponse
+   * @response 200 classicListResponse
    * @apikey
    */
   async myFavor() {
