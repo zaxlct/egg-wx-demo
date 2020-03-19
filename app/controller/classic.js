@@ -100,8 +100,8 @@ class ClassicController extends Controller {
     const v = await new this.app.validator.LikeValidator().validate(ctx)
     const art_id = v.get('path.id')
     const type = v.get('path.type')
-    const classic = await ctx.service.classic.getClassicFavor(art_id, type, ctx.auth.uid)
-    ctx.body = classic
+    const classicFavor = await ctx.service.classic.getClassicFavor(art_id, type, ctx.auth.uid)
+    ctx.body = classicFavor
   }
 }
 module.exports = ClassicController
