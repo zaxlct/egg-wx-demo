@@ -61,7 +61,7 @@ class ClassicService extends Service {
    * @param {integer} uid 正整数，
    * @param {integer} index 正整数，期刊数
    */
-  async getClassicByArtQuery(art_id, type, uid, index = null) {
+  async getClassicByArt(art_id, type, uid, index = null) {
     const art = await this.getArtById(art_id, type)
     const like_status = await this.ctx.service.favor.getFavorByArtId(art_id, type, uid)
     return {
@@ -88,7 +88,7 @@ class ClassicService extends Service {
     if (!flow) {
       throw new this.ctx.app.errs.NotFound()
     }
-    const classic = await this.getClassicByArtQuery(flow.art_id, flow.type, uid, flow.index)
+    const classic = await this.getClassicByArt(flow.art_id, flow.type, uid, flow.index)
     return classic
   }
 }

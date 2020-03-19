@@ -82,7 +82,7 @@ class ClassicController extends Controller {
     const v = await new this.app.validator.ClassicValidator().validate(ctx)
     const art_id = v.get('path.id')
     const type = v.get('path.type')
-    const classic = await ctx.service.classic.getClassicByArtQuery(art_id, type, ctx.auth.uid)
+    const classic = await ctx.service.classic.getClassicByArt(art_id, type, ctx.auth.uid)
     ctx.body = classic
   }
 }
