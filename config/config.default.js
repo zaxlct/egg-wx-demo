@@ -18,6 +18,7 @@ module.exports = appInfo => {
       database: 'island-egg',
       user: 'root',
       password: '123456',
+      // timezone: '+08:00', // 保存为本地时区
       define: {
         freezeTableName: true, // 阻止数据表名变为复数
         underscored: true,
