@@ -20,7 +20,7 @@ class ClassicController extends Controller {
         ['index', 'DESC']
       ]
     }
-    const classic = await ctx.service.classic.getClassic(query, ctx.auth.uid)
+    const classic = await ctx.service.classic.getClassicByFlowQuery(query, ctx.auth.uid)
     ctx.body = classic
   }
 
@@ -42,7 +42,7 @@ class ClassicController extends Controller {
         index: v.get('path.index') + 1
       }
     }
-    const classic = await ctx.service.classic.getClassic(query, ctx.auth.uid)
+    const classic = await ctx.service.classic.getClassicByFlowQuery(query, ctx.auth.uid)
     ctx.body = classic
   }
 
@@ -64,7 +64,25 @@ class ClassicController extends Controller {
         index: v.get('path.index') - 1
       }
     }
-    const classic = await ctx.service.classic.getClassic(query, ctx.auth.uid)
+    const classic = await ctx.service.classic.getClassicByFlowQuery(query, ctx.auth.uid)
+    ctx.body = classic
+  }
+
+  /**
+   * @summary 获取某一期详细信息
+   * @description 获取某一期详细信息
+   * @router get /api/v1/classic/<type>/<id>
+   * @request path1 integer * type 类型号， 最下面 enumsType 里的 ArtType
+   * @request path2 integer * id 必须是正整数（id 实际是是 art_id）
+   * @response 200 classicResponse
+   * @apikey
+   */
+  async detail() {
+    const ctx = this.ctx
+    const v = await new this.app.validator.ClassicValidator().validate(ctx)
+    const art_id = v.get('path.id')
+    const type = v.get('path.type')
+    const classic = await ctx.service.classic.getClassicByArtQuery(art_id, type, ctx.auth.uid)
     ctx.body = classic
   }
 }

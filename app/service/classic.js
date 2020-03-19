@@ -48,21 +48,27 @@ class ClassicService extends Service {
       default:
         break
     }
+    if (!art) {
+      throw new this.ctx.app.errs.NotFound()
+    }
     return art
   }
 
-  async getClassic(query, uid) {
-    const flow = await this.getFlow(query)
-    if (!flow) {
-      throw new this.ctx.app.errs.NotFound()
-    }
-    const art = await this.getArtById(flow.art_id, flow.type)
-    const like_status = await this.ctx.service.favor.getFavorByArtId(flow.art_id, flow.type, uid)
+  /**
+   *
+   * @param {integer} art_id 正整数，
+   * @param {integer} type 正整数，
+   * @param {integer} uid 正整数，
+   * @param {integer} index 正整数，期刊数
+   */
+  async getClassicByArtQuery(art_id, type, uid, index = null) {
+    const art = await this.getArtById(art_id, type)
+    const like_status = await this.ctx.service.favor.getFavorByArtId(art_id, type, uid)
     return {
       like_status: !!like_status,
-      index: flow.index,
-      type: flow.type,
-      id: flow.art_id,
+      index,
+      type,
+      id: art_id,
       content: art.content,
       fav_nums: art.fav_nums,
       image: art.image,
@@ -70,6 +76,20 @@ class ClassicService extends Service {
       title: art.title,
       url: art.url,
     }
+  }
+
+  /**
+   *
+   * @param {object} query 查询 Flow model 的 query
+   * @param {integer} uid 用户 id
+   */
+  async getClassicByFlowQuery(query, uid) {
+    const flow = await this.getFlow(query)
+    if (!flow) {
+      throw new this.ctx.app.errs.NotFound()
+    }
+    const classic = await this.getClassicByArtQuery(flow.art_id, flow.type, uid, flow.index)
+    return classic
   }
 }
 
