@@ -20,5 +20,6 @@ module.exports = app => {
   router.get('/api/v1/classic/:type/:id/favor', new app.middlewares.auth().m, 'classic.favor')
 
   router.post('/api/v1/like', new app.middlewares.auth().m, 'like.like')
+  router.post('/api/v1/like/cancel', new app.middlewares.auth().m, 'like.cancel')
   // router.resources('user', '/api/v1/user', new app.middlewares.auth().m, app.controller.user)
 }

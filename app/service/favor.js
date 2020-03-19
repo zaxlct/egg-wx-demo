@@ -5,7 +5,7 @@ const Service = require('egg').Service
 class FavorService extends Service {
   async createFavor(art_id, type, uid) {
     const ctx = this.ctx
-    const favor = await this.getFavorByArtId(art_id, type, ctx.auth.uid)
+    const favor = await this.getFavorByArtId(art_id, type, uid)
     if (favor) {
       throw new ctx.app.errs.LikeError()
     }
@@ -18,6 +18,17 @@ class FavorService extends Service {
       art_id,
       type,
       uid,
+    })
+  }
+
+  async deleteFavor(art_id, type, uid) {
+    const ctx = this.ctx
+    const favor = await this.getFavorByArtId(art_id, type, uid)
+    if (!favor) {
+      throw new ctx.app.errs.DislikeError()
+    }
+    await favor.destroy({
+      force: true, // 物理删除 or 软删除
     })
   }
 
