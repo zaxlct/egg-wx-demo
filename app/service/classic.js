@@ -19,34 +19,23 @@ class ClassicService extends Service {
       BOOK,
     } = this.ctx.app.enums.ArtType
     let art = null
+    const query = {
+      where: {
+        id: art_id,
+      }
+    }
     switch (type) {
       case MOVIE:
-        art = await this.ctx.model.Movie.findOne({
-          where: {
-            id: art_id,
-          }
-        })
+        art = await this.ctx.model.Movie.findOne(query)
         break
       case SENTENCE:
-        art = await this.ctx.model.Sentence.findOne({
-          where: {
-            id: art_id,
-          }
-        })
+        art = await this.ctx.model.Sentence.findOne(query)
         break
       case MUSIC:
-        art = await this.ctx.model.Music.findOne({
-          where: {
-            id: art_id,
-          }
-        })
+        art = await this.ctx.model.Music.findOne(query)
         break
       case BOOK:
-        art = await this.ctx.model.Book.findOne({
-          where: {
-            id: art_id,
-          }
-        })
+        art = await this.ctx.model.Book.findOne(query)
         break
       default:
         break
@@ -65,49 +54,31 @@ class ClassicService extends Service {
       BOOK,
     } = this.ctx.app.enums.ArtType
     let artList = []
+    const query = {
+      where: {
+        id: {
+          [Op.in]: artIds
+        },
+      }
+    }
     switch (type) {
       case MOVIE:
-        artList = await this.ctx.model.Movie.findAll({
-          where: {
-            id: {
-              [Op.in]: artIds
-            },
-          }
-        })
+        artList = await this.ctx.model.Movie.findAll(query)
         break
       case SENTENCE:
-        artList = await this.ctx.model.Sentence.findAll({
-          where: {
-            id: {
-              [Op.in]: artIds
-            },
-          }
-        })
+        artList = await this.ctx.model.Sentence.findAll(query)
         break
       case MUSIC:
-        artList = await this.ctx.model.Music.findAll({
-          where: {
-            id: {
-              [Op.in]: artIds
-            },
-          }
-        })
+        artList = await this.ctx.model.Music.findAll(query)
         break
       case BOOK:
-        artList = await this.ctx.model.Book.findAll({
-          where: {
-            id: {
-              [Op.in]: artIds
-            },
-          }
-        })
+        artList = await this.ctx.model.Book.findAll(query)
         break
       default:
         break
     }
     return artList
   }
-
 
   /**
    *
