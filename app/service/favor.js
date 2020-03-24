@@ -18,8 +18,8 @@ class FavorService extends Service {
     } catch (error) {
       throw new ctx.app.errs.LikeError('你点赞的资源不存在')
     }
-    return this.ctx.model.transaction(async t => {
-      await this.ctx.model.Favor.create({
+    return ctx.model.transaction(async t => {
+      await ctx.model.Favor.create({
         art_id,
         type,
         uid
@@ -46,7 +46,7 @@ class FavorService extends Service {
       throw new ctx.app.errs.LikeError('你取消点赞资源不存在')
     }
 
-    return this.ctx.model.transaction(async t => {
+    return ctx.model.transaction(async t => {
       await favor.destroy({
         force: true, // 物理删除 or 软删除
         transaction: t,
