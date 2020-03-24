@@ -49,4 +49,33 @@ module.exports = {
       description: '期刊类型,这里的类型分为:100 电影 200 音乐 300 句子',
     }
   },
+  book: {
+    id: {
+      type: 'integer',
+    },
+    title: {
+      type: 'string',
+      description: '书籍题目'
+    },
+    fav_nums: {
+      type: 'integer',
+      description: '点赞次数'
+    },
+    image: {
+      type: 'string',
+      description: '图片 URL'
+    },
+    index: {
+      type: 'integer',
+      description: '期号'
+    },
+    like_status: {
+      type: 'boolean',
+      description: '是否点赞，列表接口不返回此字段，详情接口返回'
+    },
+    author: {
+      type: 'string',
+      description: '作者'
+    },
+  },
 }

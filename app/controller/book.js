@@ -10,7 +10,7 @@ class BookController extends Controller {
    * @summary 获取热门书籍(概要)
    * @description 获取热门书籍(概要)
    * @router get /api/v1/book/hot_list
-   * @response 201
+   * @response 200 bookListResponse
    * @apikey
    */
   async hotList() {
