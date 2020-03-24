@@ -22,5 +22,8 @@ module.exports = app => {
 
   router.post('/api/v1/like', new app.middlewares.auth().m, 'like.like')
   router.post('/api/v1/like/cancel', new app.middlewares.auth().m, 'like.cancel')
+
+  router.get('/api/v1/book/hot_list', new app.middlewares.auth().m, 'book.hotList')
+
   // router.resources('user', '/api/v1/user', new app.middlewares.auth().m, app.controller.user)
 }
