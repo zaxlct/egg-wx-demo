@@ -9,7 +9,7 @@ class ClassicController extends Controller {
   /**
    * @summary 获取最新一期
    * @description 获取最新一期期刊
-   * @router get /api/v1/classic
+   * @router get /api/v1/classic/latest
    * @response 200 classicResponse
    * @apikey
    */
