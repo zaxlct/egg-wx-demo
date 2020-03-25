@@ -1,6 +1,8 @@
 'use strict'
-
+const axios = require('axios')
 const Service = require('egg').Service
+const util = require('util')
+
 const {
   Op,
   Sequelize
@@ -44,6 +46,12 @@ class FavorService extends Service {
       //   fav_nums: currentBook ? currentBook.fav_nums : 0,
       // })
     })
+  }
+
+  async getDatail(id) {
+    const url = util.format(this.app.config.yushu.detailUrl, id)
+    const detail = await axios.get(url)
+    return detail.data
   }
 }
 
