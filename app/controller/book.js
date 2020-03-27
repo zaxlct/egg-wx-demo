@@ -24,7 +24,7 @@ class BookController extends Controller {
    * @description 获取书籍详情
    * @router get /api/v1/book/<id>/detail
    * @request path integer * id 书籍 ID
-   * @response 200 bookListResponse
+   * @response 200 bookDetailResponse
    * @apikey
    */
   async detail() {

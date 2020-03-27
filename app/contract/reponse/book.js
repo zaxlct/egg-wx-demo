@@ -12,4 +12,9 @@ module.exports = {
       itemType: 'book',
     }
   },
+  bookDetailResponse: {
+    result: {
+      type: 'bookDetail',
+    }
+  },
 }

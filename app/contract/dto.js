@@ -78,4 +78,81 @@ module.exports = {
       description: '作者'
     },
   },
+  bookDetail: {
+    id: {
+      type: 'integer',
+    },
+    author: {
+      type: 'array',
+      itemType: 'string',
+      description: '作者（可能是多个）',
+      example: `[
+        "（美）Brian W. Kernighan",
+        "（美）Dennis M. Ritchie"
+      ]`,
+    },
+    binding: {
+      type: 'string',
+      example: '平装',
+    },
+    category: {
+      type: 'string',
+      description: '类型',
+    },
+    image: {
+      type: 'string',
+      description: '主图片'
+    },
+    images: {
+      type: 'object',
+      example: `{
+        "large": "https://img3.doubanio.com/lpic/s1106934.jpg"
+      }`,
+    },
+    isbn: {
+      type: 'string',
+      example: '9787111128069',
+    },
+    pages: {
+      type: 'string',
+      description: '页数'
+    },
+    price: {
+      type: 'string',
+      description: '价格',
+      example: '30.00元',
+    },
+    pubdate: {
+      type: 'string',
+      description: '发布日期',
+      example: '2004-1',
+    },
+    publisher: {
+      type: 'string',
+      description: '出版社',
+      example: '机械工业出版社',
+    },
+    title: {
+      type: 'string',
+      description: '书名',
+    },
+    translator: {
+      type: 'array',
+      itemType: 'string',
+      description: '译者（可能是多个）',
+      example: `[
+        "徐宝文",
+        "李志译",
+        "尤晋元审校"
+      ]`,
+    },
+    subtitle: {
+      type: 'string',
+      example: '第 2 版·新版',
+    },
+    summary: {
+      type: 'string',
+      description: '书籍简介，很长的文本，会有换行符',
+    },
+  },
 }
