@@ -25,6 +25,7 @@ module.exports = app => {
 
   router.get('/api/v1/book/hot_list', new app.middlewares.auth().m, 'book.hotList')
   router.get('/api/v1/book/:id/detail', new app.middlewares.auth().m, 'book.detail')
+  router.get('/api/v1/book/search', new app.middlewares.auth().m, 'book.search')
 
   // router.resources('user', '/api/v1/user', new app.middlewares.auth().m, app.controller.user)
 }

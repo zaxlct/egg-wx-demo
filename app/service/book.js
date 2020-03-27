@@ -53,6 +53,12 @@ class FavorService extends Service {
     const detail = await axios.get(url)
     return detail.data
   }
+
+  async searchFromYuShu(q, start, count, summary = 1) {
+    const url = util.format(this.app.config.yushu.keywordUrl, encodeURI(q), count, start, summary)
+    const result = await axios.get(url)
+    return result.data
+  }
 }
 
 module.exports = FavorService

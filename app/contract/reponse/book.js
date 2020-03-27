@@ -17,4 +17,19 @@ module.exports = {
       type: 'bookDetail',
     }
   },
+  bookDetailListResponse: {
+    result: {
+      type: 'array',
+      itemType: 'bookDetail',
+    },
+    count: {
+      type: 'integer'
+    },
+    start: {
+      type: 'integer'
+    },
+    total: {
+      type: 'integer'
+    },
+  },
 }

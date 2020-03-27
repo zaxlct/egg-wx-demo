@@ -104,7 +104,7 @@ module.exports = {
       description: '主图片'
     },
     images: {
-      type: 'object',
+      type: 'string',
       example: `{
         "large": "https://img3.doubanio.com/lpic/s1106934.jpg"
       }`,
