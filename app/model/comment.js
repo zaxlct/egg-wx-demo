@@ -5,6 +5,7 @@ module.exports = app => {
   class Comment extends Sequelize.Model {}
   Comment.init({
     book_id: Sequelize.INTEGER,
+    uid: Sequelize.INTEGER,
     content: Sequelize.STRING(12),
     nums: {
       type: Sequelize.INTEGER,
