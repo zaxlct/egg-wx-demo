@@ -18,13 +18,13 @@ module.exports = appInfo => {
       database: 'island-egg',
       user: 'root',
       password: '123456',
-      // timezone: '+08:00', // 保存为本地时区
+      timezone: '+08:00', // 保存为本地时区
       define: {
         freezeTableName: true, // 阻止数据表名变为复数
-        underscored: true,
+        underscored: true, // 将自动设置所有属性的字段参数为下划线命名方式
         createdAt: 'created_at',
         updatedAt: 'updated_at',
-        deletedAt: 'deleted_at'
+        deletedAt: 'deleted_at',
         // timestamps: false // 阻止model生成createAt和updateAt字段
       }
     },
