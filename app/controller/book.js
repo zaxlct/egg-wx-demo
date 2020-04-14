@@ -84,7 +84,6 @@ class BookController extends Controller {
     ctx.body = data
   }
 
-
   /**
    * @summary 获取热搜关键字
    * @router get /api/v1/book/hot_keyword
@@ -102,6 +101,25 @@ class BookController extends Controller {
         '王小波'
       ]
     }
+  }
+
+  /**
+   * @summary 新增短评
+   * @description 新增短评
+   * @router post /api/v1/book/add/short_comment
+   * @request body addCommentRequest * body
+   * @response 201
+   * @apikey
+   */
+  async addComment() {
+    const ctx = this.ctx
+    const v = await new this.app.validator.AddShortCommentValidator().validate(ctx, {
+      id: 'book_id'
+    })
+    const book_id = v.get('body.book_id')
+    const content = v.get('body.content')
+    await ctx.service.book.addComment(book_id, content, ctx.auth.uid)
+    ctx.status = 201
   }
 }
 

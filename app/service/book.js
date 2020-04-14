@@ -91,6 +91,25 @@ class FavorService extends Service {
       id: bookId,
     }
   }
+
+  async addComment(book_id, content, uid) {
+    const comment = await this.ctx.model.Comment.findOne({
+      where: {
+        book_id,
+        content,
+      }
+    })
+    if (comment) {
+      await comment.increment('nums')
+    } else {
+      await this.ctx.model.Comment.create({
+        book_id,
+        content,
+        uid,
+        nums: 1,
+      })
+    }
+  }
 }
 
 module.exports = FavorService
