@@ -69,6 +69,27 @@ class FavorService extends Service {
     })
     return count
   }
+
+  async favorDetail(bookId, uid) {
+    const count = await this.ctx.model.Favor.count({
+      where: {
+        type: this.app.enums.ArtType.BOOK,
+        art_id: bookId,
+      },
+    })
+    const like_status = await this.ctx.model.Favor.findOne({
+      where: {
+        type: this.app.enums.ArtType.BOOK,
+        uid,
+        art_id: bookId,
+      }
+    })
+    return {
+      count,
+      like_status: !!like_status,
+      id: bookId,
+    }
+  }
 }
 
 module.exports = FavorService

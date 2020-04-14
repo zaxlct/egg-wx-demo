@@ -70,5 +70,21 @@ class BookController extends Controller {
     const bookList = await ctx.service.book.searchFromYuShu(q, start, count, summary)
     ctx.body = bookList
   }
+
+  /**
+   * @summary 获取书籍点赞情况
+   * @description 当参数 summary 为 1 时，item 里的字段会少很多，需要注意
+   * @router get /api/v1/book/<id>/favor
+   * @request path1 integer *id 书籍的id,
+   * @response 200 bookDetailListResponse
+   * @apikey
+   */
+  async favorDetail() {
+    const ctx = this.ctx
+    const v = await new this.app.validator.PositiveIntegerValidator().validate(ctx)
+    const bookId = v.get('path.id')
+    const data = await ctx.service.book.favorDetail(bookId, ctx.auth.uid)
+    ctx.body = data
+  }
 }
 module.exports = BookController

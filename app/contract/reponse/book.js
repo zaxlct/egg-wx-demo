@@ -40,4 +40,18 @@ module.exports = {
       type: 'integer'
     },
   },
+  bookFavorDetailResponse: {
+    fav_nums: {
+      type: 'integer',
+      description: '此书总共被收藏的数量',
+    },
+    like_status: {
+      type: 'boolean',
+      description: '当前用户是否对此书点赞',
+    },
+    id: {
+      type: 'integer',
+      description: '书的id',
+    },
+  },
 }
