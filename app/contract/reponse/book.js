@@ -23,12 +23,20 @@ module.exports = {
       itemType: 'bookDetail',
     },
     count: {
-      type: 'integer'
+      type: 'integer',
+      description: '记录条数',
     },
     start: {
-      type: 'integer'
+      type: 'integer',
+      description: '开始记录数',
     },
     total: {
+      type: 'integer',
+      description: '总条数',
+    },
+  },
+  myFavorCountResponse: {
+    count: {
       type: 'integer'
     },
   },

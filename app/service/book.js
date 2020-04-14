@@ -59,6 +59,16 @@ class FavorService extends Service {
     const result = await axios.get(url)
     return result.data
   }
+
+  async myFavorCount(uid) {
+    const count = await this.ctx.model.Favor.count({
+      where: {
+        type: this.app.enums.ArtType.BOOK,
+        uid,
+      },
+    })
+    return count
+  }
 }
 
 module.exports = FavorService

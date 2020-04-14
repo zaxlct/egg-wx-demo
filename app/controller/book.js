@@ -35,6 +35,21 @@ class BookController extends Controller {
   }
 
   /**
+   * @summary 获取喜欢书籍数量
+   * @description 获取喜欢书籍数量
+   * @router get /apiv1/book/favor/count
+   * @response 200 myFavorCountResponse
+   * @apikey
+   */
+  async myFavorCount() {
+    const ctx = this.ctx
+    const count = await ctx.service.book.myFavorCount(ctx.auth.uid)
+    ctx.body = {
+      count
+    }
+  }
+
+  /**
    * @summary 书籍搜索
    * @description 当参数 summary 为 1 时，item 里的字段会少很多，需要注意
    * @router get /api/v1/book/search
