@@ -29,6 +29,7 @@ module.exports = app => {
   router.get('/api/v1/book/:id/favor', new app.middlewares.auth().m, 'book.favorDetail')
   router.get('/api/v1/book/hot_keyword', 'book.hotKeyword')
   router.post('/api/v1/book/add/short_comment', new app.middlewares.auth().m, 'book.addComment')
+  router.get('/api/v1/book/:id/short_comment', 'book.getComment')
 
   // router.resources('user', '/api/v1/user', new app.middlewares.auth().m, app.controller.user)
 }

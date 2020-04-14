@@ -92,7 +92,7 @@ class FavorService extends Service {
     }
   }
 
-  async addComment(book_id, content, uid) {
+  async addComment(book_id, content) {
     const comment = await this.ctx.model.Comment.findOne({
       where: {
         book_id,
@@ -105,9 +105,20 @@ class FavorService extends Service {
       await this.ctx.model.Comment.create({
         book_id,
         content,
-        uid,
         nums: 1,
       })
+    }
+  }
+
+  async getComment(book_id) {
+    const comment = await this.ctx.model.Comment.findAll({
+      where: {
+        book_id,
+      }
+    })
+    return {
+      comment,
+      book_id,
     }
   }
 }

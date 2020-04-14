@@ -121,6 +121,22 @@ class BookController extends Controller {
     await ctx.service.book.addComment(book_id, content, ctx.auth.uid)
     ctx.status = 201
   }
+
+  /**
+   * @summary 获取书籍短评
+   * @description 获取书籍短评
+   * @router get /api/v1/book/<id>/short_comment
+   * @request path1 integer *id 书籍的id
+   * @response 200 bookFavorDetailResponse
+   * @apikey
+   */
+  async getComment() {
+    const ctx = this.ctx
+    const v = await new this.app.validator.PositiveIntegerValidator().validate(ctx)
+    const bookId = v.get('path.id')
+    const data = await ctx.service.book.getComment(bookId)
+    ctx.body = data
+  }
 }
 
 module.exports = BookController
