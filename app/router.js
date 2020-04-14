@@ -23,11 +23,12 @@ module.exports = app => {
   router.post('/api/v1/like', new app.middlewares.auth().m, 'like.like')
   router.post('/api/v1/like/cancel', new app.middlewares.auth().m, 'like.cancel')
 
-  router.get('/api/v1/book/hot_list', new app.middlewares.auth().m, 'book.hotList')
-  router.get('/api/v1/book/:id/detail', new app.middlewares.auth().m, 'book.detail')
-  router.get('/api/v1/book/search', new app.middlewares.auth().m, 'book.search')
+  router.get('/api/v1/book/hot_list', 'book.hotList')
+  router.get('/api/v1/book/:id/detail', 'book.detail')
+  router.get('/api/v1/book/search', 'book.search')
   router.get('/api/v1/book/favor/count', new app.middlewares.auth().m, 'book.myFavorCount')
   router.get('/api/v1/book/:id/favor', new app.middlewares.auth().m, 'book.favorDetail')
+  router.get('/api/v1/book/hot_keyword', 'book.hotKeyword')
 
   // router.resources('user', '/api/v1/user', new app.middlewares.auth().m, app.controller.user)
 }

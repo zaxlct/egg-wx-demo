@@ -11,7 +11,6 @@ class BookController extends Controller {
    * @description 获取热门书籍(概要)
    * @router get /api/v1/book/hot_list
    * @response 200 bookListResponse
-   * @apikey
    */
   async hotList() {
     const ctx = this.ctx
@@ -25,7 +24,6 @@ class BookController extends Controller {
    * @router get /api/v1/book/<id>/detail
    * @request path integer * id 书籍 ID
    * @response 200 bookDetailResponse
-   * @apikey
    */
   async detail() {
     const ctx = this.ctx
@@ -58,7 +56,6 @@ class BookController extends Controller {
    * @request path3 integer  summary 返回完整或简介, 默认为0；0 为完整内容, 1 为简介
    * @request path4 string * q 搜索内容, 比如你想搜索python相关书籍, 则输入python
    * @response 200 bookDetailListResponse
-   * @apikey
    */
   async search() {
     const ctx = this.ctx
@@ -86,5 +83,24 @@ class BookController extends Controller {
     const data = await ctx.service.book.favorDetail(bookId, ctx.auth.uid)
     ctx.body = data
   }
+
+
+  /**
+   * @summary 获取书籍点赞情况
+   */
+  async hotKeyword() {
+    ctx.body = {
+      hot: ['Python',
+        '哈利·波特',
+        '村上春树',
+        '东野圭吾',
+        '白夜行',
+        '韩寒',
+        '金庸',
+        '王小波'
+      ]
+    }
+  }
 }
+
 module.exports = BookController
