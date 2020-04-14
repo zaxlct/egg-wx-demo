@@ -76,7 +76,7 @@ class BookController extends Controller {
    * @description 当参数 summary 为 1 时，item 里的字段会少很多，需要注意
    * @router get /api/v1/book/<id>/favor
    * @request path1 integer *id 书籍的id,
-   * @response 200 bookDetailListResponse
+   * @response 200 bookFavorDetailResponse
    * @apikey
    */
   async favorDetail() {
