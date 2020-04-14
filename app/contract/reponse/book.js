@@ -54,4 +54,11 @@ module.exports = {
       description: '书的id',
     },
   },
+
+  bookHotkeywordResponse: {
+    hot: {
+      type: 'array',
+      itemType: 'string',
+    },
+  },
 }

@@ -86,7 +86,9 @@ class BookController extends Controller {
 
 
   /**
-   * @summary 获取书籍点赞情况
+   * @summary 获取热搜关键字
+   * @router get /api/v1/book/hot_keyword
+   * @response 200 bookHotkeywordResponse
    */
   async hotKeyword() {
     ctx.body = {
