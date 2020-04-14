@@ -64,8 +64,11 @@ module.exports = {
   bookShortCommentResponse: {
     comment: {
       type: 'array',
-      itemType: 'object',
-      description: '[{"content": "i hate6!", "nums": 1}]'
+      itemType: 'string',
+      description: JSON.stringify([{
+        content: 'i hate6!',
+        nums: 1
+      }]),
     },
     book_id: {
       type: 'integer',
