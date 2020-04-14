@@ -71,6 +71,7 @@ class FavorService extends Service {
   }
 
   async favorDetail(bookId, uid) {
+    // 是否需要判断书籍id是否存在呢？
     const count = await this.ctx.model.Favor.count({
       where: {
         type: this.app.enums.ArtType.BOOK,
