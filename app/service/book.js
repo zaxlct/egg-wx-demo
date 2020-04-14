@@ -88,7 +88,7 @@ class FavorService extends Service {
     return {
       count,
       like_status: !!like_status,
-      id: bookId,
+      book_id: bookId,
     }
   }
 

@@ -127,7 +127,7 @@ class BookController extends Controller {
    * @description 获取书籍短评
    * @router get /api/v1/book/<id>/short_comment
    * @request path1 integer *id 书籍的id
-   * @response 200 bookFavorDetailResponse
+   * @response 200 bookShortCommentResponse
    * @apikey
    */
   async getComment() {

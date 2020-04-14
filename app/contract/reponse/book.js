@@ -49,7 +49,7 @@ module.exports = {
       type: 'boolean',
       description: '当前用户是否对此书点赞',
     },
-    id: {
+    book_id: {
       type: 'integer',
       description: '书的id',
     },
@@ -59,6 +59,17 @@ module.exports = {
     hot: {
       type: 'array',
       itemType: 'string',
+    },
+  },
+  bookShortCommentResponse: {
+    comment: {
+      type: 'array',
+      itemType: 'object',
+      description: '[{"content": "i hate6!", "nums": 1}]'
+    },
+    book_id: {
+      type: 'integer',
+      description: '书的id',
     },
   },
 }
