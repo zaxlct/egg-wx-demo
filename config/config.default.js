@@ -34,9 +34,17 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1584066474406_4742'
   config.security = {
     csrf: {
-      enable: false
-    }
+      enable: false,
+      ignoreJSON: true,
+    },
+    domainWhiteList: ['http://localhost:3000', 'http://localhost:9528']
   }
+
+  config.cors = {
+    origin: '*',
+    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH'
+  }
+
   config.auth = {
     security: {
       secretKey: 'abcdefg',
