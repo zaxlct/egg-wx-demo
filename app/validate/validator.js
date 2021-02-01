@@ -113,60 +113,50 @@ class NotEmptyValidator extends LinValidator {
   }
 }
 
-function checkType(vals) {
-  let type = vals.body.type || vals.path.type
-  if (!type) {
-    throw new Error('type是必须参数')
-  }
-  type = parseInt(type)
-
-  if (!LoginType.isThisType(type)) {
-    throw new Error('type参数不合法')
-  }
-}
-
 function checkArtType(vals) {
   let type = vals.body.type || vals.path.type
   if (!type) {
-    throw new Error('type是必须参数')
+    return [false, 'type是必须参数']
   }
   type = parseInt(type)
 
   if (!ArtType.isThisType(type)) {
-    throw new Error('type参数不合法')
-  }
-}
-
-class Checker {
-  constructor(type) {
-    this.enumType = type
-  }
-
-  check(vals) {
-    let type = vals.body.type || vals.path.type
-    if (!type) {
-      throw new Error('type是必须参数')
-    }
-    type = parseInt(type)
-
-    if (!this.enumType.isThisType(type)) {
-      throw new Error('type参数不合法')
-    }
-
+    return [false, 'type参数不合法']
   }
 }
 
 class LikeValidator extends PositiveIntegerValidator {
   constructor() {
     super()
+    this.type = [
+      new Rule('isInt', '需要是正整数', {
+        min: 1
+      }),
+    ]
     this.validateType = checkArtType
-    // const checker = new Checker(ArtType)
-    // this.validateType = checker.check.bind(checker)
   }
 }
 
 class ClassicValidator extends LikeValidator {
 
+}
+
+class MyFavorValidator extends LinValidator {
+  constructor() {
+    super()
+    this.start = [
+      new Rule('isOptional', '', 1),
+      new Rule('isInt', '需要是正整数', {
+        min: 1
+      }),
+    ]
+    this.count = [
+      new Rule('isOptional', '', 20),
+      new Rule('isInt', '需要是正整数', {
+        min: 1
+      }),
+    ]
+  }
 }
 
 class SearchValidator extends LinValidator {
@@ -216,5 +206,6 @@ module.exports = {
   LikeValidator,
   ClassicValidator,
   SearchValidator,
-  AddShortCommentValidator
+  AddShortCommentValidator,
+  MyFavorValidator,
 }

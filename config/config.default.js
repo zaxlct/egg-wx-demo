@@ -18,12 +18,13 @@ module.exports = appInfo => {
       database: 'island-egg',
       user: 'root',
       password: '123456',
+      timezone: '+08:00', // 保存为本地时区
       define: {
         freezeTableName: true, // 阻止数据表名变为复数
-        underscored: true,
+        underscored: true, // 将自动设置所有属性的字段参数为下划线命名方式
         createdAt: 'created_at',
         updatedAt: 'updated_at',
-        deletedAt: 'deleted_at'
+        deletedAt: 'deleted_at',
         // timestamps: false // 阻止model生成createAt和updateAt字段
       }
     },
@@ -33,9 +34,17 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1584066474406_4742'
   config.security = {
     csrf: {
-      enable: false
-    }
+      enable: false,
+      ignoreJSON: true,
+    },
+    domainWhiteList: ['http://localhost:3000', 'http://localhost:9528']
   }
+
+  config.cors = {
+    origin: '*',
+    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH'
+  }
+
   config.auth = {
     security: {
       secretKey: 'abcdefg',
@@ -78,22 +87,14 @@ module.exports = appInfo => {
     consumes: ['application/json'], // 指定处理请求的提交内容类型（Content-Type），例如application/json, text/html
     produces: ['application/json'], // 指定返回的内容类型，仅当request请求头中的(Accept)类型中包含该指定类型才返回
     securityDefinitions: { // 配置接口安全授权方式
-      // apikey: {
-      //   type: 'apiKey',
-      //   name: 'clientkey',
-      //   in: 'header',
-      // },
-      // oauth2: {
-      //   type: 'oauth2',
-      //   tokenUrl: 'http://petstore.swagger.io/oauth/dialog',
-      //   flow: 'password',
-      //   scopes: {
-      //     'write:access_token': 'write access_token',
-      //     'read:access_token': 'read access_token',
-      //   },
-      // },
+      apikey: {
+        type: 'apiKey',
+        name: 'Authorization',
+        description: 'Token 的格式是：`Bearer ${token}`',
+        in: 'header',
+      },
     },
-    enableSecurity: false, // 是否启用授权，默认 false（不启用）
+    enableSecurity: true, // 是否启用授权，默认 false（不启用）
     // enableValidate: true,    // 是否启用参数校验，默认 true（启用）
     routerMap: true, // 是否启用自动生成路由，默认 true (启用)
     enable: true, // 默认 true (启用)

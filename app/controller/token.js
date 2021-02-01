@@ -3,15 +3,15 @@
 const Controller = require('egg').Controller
 
 /**
- * @controller user 用户接口
+ * @controller Token 相关接口
  */
 class TokenController extends Controller {
   /**
-   * @summary 登录接口
+   * @summary 登录接口、 获取 Token
    * @description 获取 Token
    * @router post /api/v1/token
-   * @request body createUserRequest *body
-   * @response 200 queryUserResponse 创建成功
+   * @request body getTokenRequest * body
+   * @response 200 getTokenResponse 创建成功
    */
   async create() {
     const ctx = this.ctx
@@ -48,6 +48,13 @@ class TokenController extends Controller {
     }
   }
 
+  /**
+   * @summary 验证 token 是否可用
+   * @description
+   * @router post /api/v1/token/verify
+   * @response 200 verifyTokenResponse 创建成功
+   * @apikey
+   */
   async verify() {
     const ctx = this.ctx
     const app = this.app

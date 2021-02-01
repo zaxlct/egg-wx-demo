@@ -3,12 +3,12 @@
 const Controller = require('egg').Controller
 
 /**
- * @controller user 用户接口
+ * @controller User 用户接口
  */
 class UserController extends Controller {
   /**
    * @summary 创建用户
-   * @description 创建用户，记录用户账户/密码/类型
+   * @description 创建用户
    * @router post /api/v1/user
    * @request body createUserRequest *body
    * @response 200 queryUserResponse 创建成功

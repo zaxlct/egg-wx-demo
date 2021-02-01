@@ -1,13 +1,18 @@
 'use strict'
 
 module.exports = {
-  baseResponse: {
-    result: {
-      type: 'boolean',
-      required: true
+  baseErrorResponse: {
+    msg: {
+      type: 'string',
+      description: '错误信息',
     },
-    errorMessage: {
-      type: 'string'
+    erorr_code: {
+      type: 'integer',
+      description: '错误码',
+    },
+    request: {
+      type: 'string',
+      description: 'request url'
     },
   },
 }
