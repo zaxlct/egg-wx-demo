@@ -7,6 +7,9 @@
 - JWT
 - Swagger-doc
 
+## API 文档
+http://127.0.0.1:7001/swagger-ui.html
+
 ## 分支说明
 - 基础的开发环境搭建完成
 - JWT 以及 Auth 中间件功能
