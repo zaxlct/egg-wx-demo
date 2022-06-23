@@ -23,6 +23,7 @@ see [egg docs][egg] for more detail.
 ### Development
 1. 导入 sql 文件 `sql/island.sql`
 2. 配置数据库 `config.default.js`
+3. 图片前缀 `http://vote-img.sutot.cn`，比如`http://vote-img.sutot.cn/movie.4.png`
 
 ```bash
 $ npm i
