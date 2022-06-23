@@ -49,9 +49,27 @@ class FavorService extends Service {
   }
 
   async getDatail(id) {
-    const url = util.format(this.app.config.yushu.detailUrl, id)
-    const detail = await axios.get(url)
-    return detail.data
+    // const url = util.format(this.app.config.yushu.detailUrl, id)
+    // const detail = await axios.get(url)
+    return {
+      result: {
+        id: 0,
+        author: ['（美）Brian W. Kernighan', '（美）Dennis M. Ritchie'],
+        binding: '平装',
+        category: '心理学',
+        image: 'https://img3.doubanio.com/lpic/s1106934.jpg',
+        images: { large: 'https://img3.doubanio.com/lpic/s1106934.jpg' },
+        isbn: '9787111128069',
+        pages: 200,
+        price: '30.00元',
+        pubdate: '2004-1',
+        publisher: '机械工业出版社',
+        title: 'string',
+        translator: ['徐宝文', '李志译', '尤晋元审校'],
+        subtitle: '第 2 版·新版',
+        summary: 'string'
+      }
+    }
   }
 
   async searchFromYuShu(q, start, count, summary = 1) {

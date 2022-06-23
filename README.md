@@ -21,6 +21,8 @@ http://127.0.0.1:7001/swagger-ui.html
 see [egg docs][egg] for more detail.
 
 ### Development
+1. 导入 sql 文件 `sql/island.sql`
+2. 配置数据库 `config.default.js`
 
 ```bash
 $ npm i
