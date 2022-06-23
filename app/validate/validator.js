@@ -3,7 +3,7 @@
 const {
   LinValidator,
   Rule
-} = require('lin-mizar')
+} = require('../lin-validator/index')
 
 const {
   LoginType,

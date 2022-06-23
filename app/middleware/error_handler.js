@@ -1,7 +1,7 @@
 'use strict'
 const {
   HttpException,
-} = require('lin-mizar')
+} = require('../lin-validator/exception')
 
 module.exports = () => {
   return async function errorHandler(ctx, next) {

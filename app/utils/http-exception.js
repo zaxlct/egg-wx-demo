@@ -1,7 +1,7 @@
 'use strict'
 const {
   HttpException,
-} = require('lin-mizar')
+} = require('../lin-validator/exception')
 
 class ParameterException extends HttpException {
   constructor(msg, errorCode) {
