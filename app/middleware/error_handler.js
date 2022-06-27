@@ -27,7 +27,7 @@ module.exports = () => {
         }
       } else {
         ctx.body = {
-          msg: 'we made a mistake O(∩_∩)O~~',
+          msg: '服务器代码内部错误，请联系管理员处理',
           error_code: 999,
           request: `${ctx.method} ${ctx.path}`,
           ...err,
