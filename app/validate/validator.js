@@ -100,8 +100,12 @@ class TokenValidator extends LinValidator {
 class SmsLoginValidator extends LinValidator {
   validateMobile(vals) {
     const mobile = vals.body.mobile.toString()
+    const code = vals.body.code.toString()
     if (mobile.length !== 11 || mobile[0] !== '1') {
       return [false, '手机号不合法']
+    }
+    if (code.length !== 4) {
+      return [false, '验证码不合法']
     }
     return true
   }
@@ -110,12 +114,8 @@ class SmsLoginValidator extends LinValidator {
 class SendSmsValidator extends LinValidator {
   validateMobile(vals) {
     const mobile = vals.query.mobile.toString()
-    const code = vals.query.code.toString()
     if (mobile.length !== 11 || mobile[0] !== '1') {
       return [false, '手机号不合法']
-    }
-    if (code.length !== 4) {
-      return [false, '验证码不合法']
     }
     return true
   }
@@ -185,23 +185,23 @@ class SearchValidator extends LinValidator {
       new Rule('isLength', '搜索关键词不能为空', {
         min: 1,
         max: 16
-      })
+      }),
+      new Rule('isOptional', '')
     ]
-    this.start = [
+    this.pageNum = [
       new Rule('isInt', '不符合规范', {
         min: 0,
         max: 60000
       }),
       new Rule('isOptional', '', 0)
     ]
-    this.count = [
+    this.pageSize = [
       new Rule('isInt', '不符合规范', {
-        min: 1,
-        max: 20
+        min: 0,
+        max: 30
       }),
       new Rule('isOptional', '', 20)
     ]
-
   }
 }
 
