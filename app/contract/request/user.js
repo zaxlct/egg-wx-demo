@@ -5,7 +5,7 @@ module.exports = {
     nickname: {
       type: 'string',
       required: true,
-      description: '用户手机号'
+      description: '用户手机号，输入11位的手机号，该手机号在手机验证码登录接口用的到'
     },
     password1: {
       type: 'string',
