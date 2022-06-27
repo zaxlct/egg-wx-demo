@@ -22,17 +22,9 @@ module.exports = {
       type: 'array',
       itemType: 'bookDetail',
     },
-    count: {
+    totalPage: {
       type: 'integer',
-      description: '记录条数',
-    },
-    start: {
-      type: 'integer',
-      description: '开始记录数',
-    },
-    total: {
-      type: 'integer',
-      description: '总条数',
+      description: '总页数',
     },
   },
   myFavorCountResponse: {

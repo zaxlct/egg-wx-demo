@@ -3,6 +3,11 @@ const axios = require('axios')
 const Service = require('egg').Service
 const util = require('util')
 
+const lodash = require('lodash')
+const {
+  noQueryBookList
+} = require('../mock/book')
+
 const {
   Op,
   Sequelize
@@ -72,10 +77,23 @@ class FavorService extends Service {
     }
   }
 
-  async searchFromYuShu(q, start, count, summary = 1) {
-    const url = util.format(this.app.config.yushu.keywordUrl, encodeURI(q), count, start, summary)
-    const result = await axios.get(url)
-    return result.data
+  async searchFromYuShu(q, pageNum, pageSize) {
+    const list = lodash.cloneDeep(noQueryBookList)
+    if (!q) {
+      //
+    } else if (q === 'js' || q === 'vue') {
+      list.books = list.books.map((item, index) => ({
+        ...item,
+        title: q + '从入门到放弃' + (index + 1)
+      }))
+    } else {
+      return []
+    }
+    const start = (pageNum - 1) * pageSize
+    const end = pageNum * pageSize
+    if (pageNum > 4) return []
+    list.books = list.books.splice(start, end)
+    return list
   }
 
   async myFavorCount(uid) {
