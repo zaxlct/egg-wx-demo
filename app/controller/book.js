@@ -20,7 +20,7 @@ class BookController extends Controller {
 
   /**
    * @summary 获取书籍详情
-   * @description 获取书籍详情
+   * @description 获取书籍详情，返回的书籍字段会重复，无所谓，测试用的
    * @router get /api/v1/book/<id>/detail
    * @request path integer * id 书籍 ID
    * @response 200 bookDetailResponse
