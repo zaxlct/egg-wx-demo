@@ -190,14 +190,14 @@ class SearchValidator extends LinValidator {
     ]
     this.pageNum = [
       new Rule('isInt', '不符合规范', {
-        min: 0,
+        min: 1,
         max: 60000
       }),
-      new Rule('isOptional', '', 0)
+      new Rule('isOptional', '', 1)
     ]
     this.pageSize = [
       new Rule('isInt', '不符合规范', {
-        min: 0,
+        min: 20,
         max: 30
       }),
       new Rule('isOptional', '', 20)
