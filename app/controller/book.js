@@ -49,7 +49,7 @@ class BookController extends Controller {
 
   /**
    * @summary 书籍搜索
-   * @description 请输入「js」、「vue」这两个关键字否则搜不出内容
+   * @description 请输入「js」、「vue」这两个关键字否则搜不出内容，部分字段是重复的，不用管，测试数据
    * @router get /api/v1/book/search
    * @request path1 pageNum * 页码，默认1
    * @request path2 pageSize * 一页多少条，默认20
