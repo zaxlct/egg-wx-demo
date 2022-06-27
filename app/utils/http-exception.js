@@ -12,6 +12,24 @@ class ParameterException extends HttpException {
   }
 }
 
+class SendFail extends HttpException {
+  constructor(msg, errorCode = 60007) {
+    super()
+    this.code = 400
+    this.msg = msg || '发送验证码失败'
+    this.errorCode = errorCode
+  }
+}
+
+class VerifyCodeFail extends HttpException {
+  constructor(msg, errorCode, httpStatus) {
+    super()
+    this.msg = msg || '验证码错误'
+    this.errorCode = errorCode || 10004
+    this.code = httpStatus || 401
+  }
+}
+
 class EmailExists extends HttpException {
   constructor(msg, errorCode) {
     super()
@@ -83,5 +101,7 @@ module.exports = {
   AuthFailed,
   Forbbiden,
   LikeError,
-  DislikeError
+  DislikeError,
+  SendFail,
+  VerifyCodeFail,
 }
