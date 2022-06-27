@@ -49,6 +49,30 @@ class TokenController extends Controller {
   }
 
   /**
+   * @summary 登录接口、 获取 Token
+   * @description 获取 Token
+   * @router post /api/v1/token/sms
+   * @request body getTokenBySmsRequest * body
+   * @response 200 getTokenResponse 创建成功
+   */
+  async smsLogin() {
+    const ctx = this.ctx
+    const app = this.app
+    const v = await new ctx.app.validator.SmsLoginValidator().validate(ctx)
+    const mobile = v.get('body.mobile')
+    const code = v.get('body.code')
+    const user = await ctx.service.user.findByNickname(mobile)
+    if (!user) {
+      throw new app.errs.ParameterException('账号或密码错误')
+    }
+    const token = await ctx.service.token.smsToToken(mobile, code, user)
+
+    ctx.body = {
+      token
+    }
+  }
+
+  /**
    * @summary 验证 token 是否可用
    * @description
    * @router post /api/v1/token/verify

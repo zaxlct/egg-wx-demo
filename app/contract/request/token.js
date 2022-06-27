@@ -34,4 +34,18 @@ module.exports = {
       description: '小程序 code'
     },
   },
+  getTokenBySmsRequest: {
+    mobile: {
+      type: 'string',
+      required: true,
+      length: 11,
+      description: '手机号',
+    },
+    code: {
+      type: 'string',
+      required: true,
+      length: 4,
+      description: '短信验证码'
+    },
+  },
 }

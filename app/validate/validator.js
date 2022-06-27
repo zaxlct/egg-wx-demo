@@ -38,19 +38,14 @@ class RegisterValidator extends LinValidator {
     ]
     this.password2 = this.password1
     this.nickname = [
-      new Rule('isNotEmpty', '昵称不可为空'),
-      new Rule('isLength', '昵称不符合长度规范', {
-        min: 4,
-        max: 32
-      }),
+      new Rule('isNotEmpty', '昵称（手机号）不可为空'),
     ]
   }
 
-  validatePassword(vals) {
-    const psw1 = vals.body.password1
-    const psw2 = vals.body.password2
-    if (psw1 !== psw2) {
-      return [false, '两个密码必须相同']
+  validateMobile(vals) {
+    const mobile = vals.body.nickname.toString()
+    if (mobile.length !== 1 && mobile[0] !== '1') {
+      return [false, '手机号不合法']
     }
     return true
   }
@@ -101,6 +96,27 @@ class TokenValidator extends LinValidator {
     return true
   }
 }
+
+class SmsLoginValidator extends LinValidator {
+  constructor() {
+    super()
+    this.mobile = [
+      new Rule('isNotEmpty', '手机号不能为空')
+    ]
+    this.code = [
+      new Rule('isNotEmpty', '验证码不能为空')
+    ]
+  }
+
+  validateMobile(vals) {
+    const mobile = vals.body.mobile.toString()
+    if (mobile.length !== 1 && mobile[0] !== '1') {
+      return [false, '手机号不合法']
+    }
+    return true
+  }
+}
+
 
 class NotEmptyValidator extends LinValidator {
   constructor() {
@@ -208,4 +224,5 @@ module.exports = {
   SearchValidator,
   AddShortCommentValidator,
   MyFavorValidator,
+  SmsLoginValidator,
 }

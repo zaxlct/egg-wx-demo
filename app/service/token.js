@@ -4,6 +4,7 @@ const Service = require('egg').Service
 
 const util = require('util')
 const axios = require('axios')
+const SMS = require('../utils/sms')
 
 class TokenService extends Service {
   constructor(ctx) {
@@ -26,6 +27,16 @@ class TokenService extends Service {
     const correct = await this.verifyPassword(secret, user.password)
     if (!correct) {
       throw new this.errs.AuthFailed('账号或密码错误')
+    }
+    const uid = user.id
+    return this.auth.generateToken(uid, this.auth.User, this.config.auth.security)
+  }
+
+  async smsToToken(mobile, code, user) {
+    const sms = new SMS()
+    const correct = await sms.verifyCode(mobile, code)
+    if (!correct) {
+      throw new this.errs.AuthFailed('验证码错误')
     }
     const uid = user.id
     return this.auth.generateToken(uid, this.auth.User, this.config.auth.security)

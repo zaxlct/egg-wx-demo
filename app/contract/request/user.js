@@ -5,7 +5,7 @@ module.exports = {
     nickname: {
       type: 'string',
       required: true,
-      description: '用户姓名'
+      description: '用户手机号'
     },
     password1: {
       type: 'string',
