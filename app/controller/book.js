@@ -90,6 +90,7 @@ class BookController extends Controller {
    * @response 200 bookHotkeywordResponse
    */
   async hotKeyword() {
+    const ctx = this.ctx
     ctx.body = {
       hot: ['Python',
         '哈利·波特',
