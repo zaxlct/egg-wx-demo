@@ -11,26 +11,24 @@ module.exports = () => {
       const isHttpException = err instanceof HttpException
       const isDev = ctx.app.config.env !== 'prod'
       const status = err.code || 500
-      // if (!isHttpException && isDev) {
-      //   throw err
-      // } else if (!isHttpException && !isDev) {
-      //   // 所有的异常都在 app 上触发一个 error 事件，框架会记录一条错误日志
-      //   ctx.app.emit('error', err, ctx)
-      // }
+      if (!isHttpException && isDev) {
+        throw err
+      } else if (!isHttpException && !isDev) {
+        // 所有的异常都在 app 上触发一个 error 事件，框架会记录一条错误日志
+        ctx.app.emit('error', err, ctx)
+      }
 
       if (isHttpException) {
         ctx.body = {
           msg: err.msg,
           erorr_code: err.errorCode,
-          request: `${ctx.method} ${ctx.path}`,
-          ...err,
+          request: `${ctx.method} ${ctx.path}`
         }
       } else {
         ctx.body = {
           msg: 'we made a mistake O(∩_∩)O~~',
           error_code: 999,
-          request: `${ctx.method} ${ctx.path}`,
-          ...err,
+          request: `${ctx.method} ${ctx.path}`
         }
       }
       ctx.status = status
