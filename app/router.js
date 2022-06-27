@@ -11,6 +11,7 @@ module.exports = app => {
 
   router.post('/api/v1/token', 'token.create')
   router.post('/api/v1/token/sms', 'token.smsLogin')
+  router.get('/api/v1/sms', 'token.smsSend')
   router.post('/api/v1/token/verify', new app.middlewares.auth().m, 'token.verify')
 
   router.get('/api/v1/classic/latest', new app.middlewares.auth().m, 'classic.latest')

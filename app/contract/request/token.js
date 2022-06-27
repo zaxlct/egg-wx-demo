@@ -39,13 +39,21 @@ module.exports = {
       type: 'string',
       required: true,
       length: 11,
-      description: '手机号',
+      description: '手机号（注册时填的nickname）',
     },
     code: {
       type: 'string',
       required: true,
       length: 4,
       description: '短信验证码'
+    },
+  },
+  sendSmsRequest: {
+    mobile: {
+      type: 'string',
+      required: true,
+      length: 11,
+      description: '手机号（注册时填的nickname）',
     },
   },
 }

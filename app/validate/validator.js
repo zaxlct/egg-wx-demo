@@ -98,25 +98,28 @@ class TokenValidator extends LinValidator {
 }
 
 class SmsLoginValidator extends LinValidator {
-  constructor() {
-    super()
-    this.mobile = [
-      new Rule('isNotEmpty', '手机号不能为空')
-    ]
-    this.code = [
-      new Rule('isNotEmpty', '验证码不能为空')
-    ]
-  }
-
   validateMobile(vals) {
     const mobile = vals.body.mobile.toString()
-    if (mobile.length !== 1 && mobile[0] !== '1') {
+    if (mobile.length !== 11 || mobile[0] !== '1') {
       return [false, '手机号不合法']
     }
     return true
   }
 }
 
+class SendSmsValidator extends LinValidator {
+  validateMobile(vals) {
+    const mobile = vals.query.mobile.toString()
+    const code = vals.query.code.toString()
+    if (mobile.length !== 11 || mobile[0] !== '1') {
+      return [false, '手机号不合法']
+    }
+    if (code.length !== 4) {
+      return [false, '验证码不合法']
+    }
+    return true
+  }
+}
 
 class NotEmptyValidator extends LinValidator {
   constructor() {
@@ -225,4 +228,5 @@ module.exports = {
   AddShortCommentValidator,
   MyFavorValidator,
   SmsLoginValidator,
+  SendSmsValidator,
 }

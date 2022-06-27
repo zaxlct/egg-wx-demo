@@ -1,6 +1,7 @@
 'use strict'
 
 const Controller = require('egg').Controller
+const SMS = require('../utils/sms')
 
 /**
  * @controller Token 相关接口
@@ -49,7 +50,7 @@ class TokenController extends Controller {
   }
 
   /**
-   * @summary 登录接口、 获取 Token
+   * @summary 手机号，短信验证码登录
    * @description 获取 Token
    * @router post /api/v1/token/sms
    * @request body getTokenBySmsRequest * body
@@ -70,6 +71,28 @@ class TokenController extends Controller {
     ctx.body = {
       token
     }
+  }
+
+  /**
+   * @summary 发送短信验证码
+   * @description 获取 Token
+   * @router get /api/v1/sms
+   * @request path mobile * 接收验证码的手机号
+   * @response 200
+   */
+  async smsSend() {
+    const ctx = this.ctx
+    const app = this.app
+    const v = await new ctx.app.validator.SendSmsValidator().validate(ctx)
+
+    const mobile = v.get('query.mobile')
+    const user = await ctx.service.user.findByNickname(mobile)
+    if (!user) {
+      throw new app.errs.ParameterException('该手机号未注册')
+    }
+    const sms = new SMS()
+    await sms.sendSms(mobile)
+    ctx.body = {}
   }
 
   /**

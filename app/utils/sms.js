@@ -12,8 +12,8 @@ class SMS {
       SendFail,
       VerifyCodeFail,
     }
-    this.APPID = '14b87e8e785647289260ce9e15623124'
-    this.APPKEY = 'a777f2f0e4cb4d4f82e6ae2dd106fedb'
+    this.APPID = '4d60080ef3d5419b821060a29aa65b3e'
+    this.APPKEY = 'f0d4b05a373d406790df40122a713e88'
   }
 
   async sendSms(phone) {

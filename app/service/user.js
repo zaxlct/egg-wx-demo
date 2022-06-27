@@ -13,7 +13,7 @@ class UserService extends Service {
         nickname
       }
     })
-    if (!user) {
+    if (user) {
       throw new this.ctx.app.errs.EmailExists(`该手机号${nickname}已经注册`)
     }
     return await this.ctx.model.User.create({
